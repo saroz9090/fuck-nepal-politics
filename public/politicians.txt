@@ -1,0 +1,10 @@
+Bribery
+Test Bribery (bribery)
+Rights
+Test Rights (Rights)
+Fraud
+Test Fraud (Fraud, Fraud 1, Fraud 2)
+Embezzlement
+Test Embezzlement (Embezzlement)
+Power
+Test Power (Power)

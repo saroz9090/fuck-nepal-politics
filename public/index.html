@@ -1,0 +1,347 @@
+<!doctype html>
+<html class = "scroll-smooth">
+   <head>
+      <link rel="shortcut icon" href="img/finger.ico" />
+      <meta charset="UTF-8">
+      <meta name="description" content="An interactive tool to help citizens expose and hold corrupt politicians accountable for crimes that harm the nation.">
+      <meta name="keywords" content="Nepal Politics, Boycott Politicians, Fuck Nepal Politics">
+      <meta name="author" content="Saroj Pokhrel">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Fuck Nepal Politics</title>
+      <link href="css/style.css" rel="stylesheet">
+      <link href = "dist/output.css" rel = "stylesheet" />
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
+      <link href = "css/style.css" rel = "stylesheet"/>
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+         />
+      <script src="https://cdn.tailwindcss.com"></script>
+   </head>
+   <body>
+      <div id = "brand-detail-modal" class="hidden relative z-0" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+       
+         <div id = "modal-backdrop" class="ease-out duration-300 opacity-0 fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+         <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div id = "modal-panel" class="flex opacity-0 min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            : "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              
+               <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                  <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                     <div class="sm:flex sm:items-start">
+                        <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-yellow-100 sm:mx-0 sm:h-10 sm:w-10">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-yellow-600 w-6 h-6">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                           </svg>
+                        </div>
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                           <h3 class="text-base font-semibold text-xl leading-6 text-gray-900" id="modal-title">Name: <span id = "brand-name" class = "inherit"></span></h3>
+                           <div class="mt-2">
+                              <p id = "brand-details" class="text-lg text-gray-500"></p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                     <button onclick = "closeModal()" type="button" class="inline-flex w-full justify-center rounded-md border border-transparent bg-gray-900 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 duration-200 text-lg focus:ring-gray-500 focus:ring-offset-2 sm:ml-3 sm:w-auto">Close menu</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div style = "z-index:99999999999 !important;" class = "fixed top-6 right-6">
+            <svg onclick="closeModal()" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style = "z-index:99999999999 !important;" class="w-14 h-14 text-gray-50 hover:bg-gray-50 hover:text-gray-900 cursor-pointer duration-200 p-2 rounded-full bg-gray-900">
+               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+         </div>
+      </div>
+      <div id = "top-nav" class = "hidden md:block duration-200 border-b-2 border-transparent w-full z-10 text-center text-gray-50 bg-black fixed py-10">
+         <a href = "#search">
+            <span class = "duration-200 hover:bg-gray-50 hover:text-black border-4 rounded-md font-bold px-4 py-3 mr-4 cursor-pointer border-gray-50">
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="relative -top-0.5 inline-block inherit w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+               </svg>
+               Search Politicians
+            </span>
+         </a>
+         <a href = "#crimes">
+            <span class = "duration-200 hover:bg-gray-50 hover:text-black border-4 rounded-md font-bold px-4 py-3 mr-4 cursor-pointer border-gray-50">
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="relative -top-0.5 inline-block inherit w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 16.318A4.486 4.486 0 0012.016 15a4.486 4.486 0 00-3.198 1.318M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
+               </svg>
+               Politics Problem
+            </span>
+         </a>
+         <a href = "#about">
+            <span class = "duration-200 hover:bg-gray-50 hover:text-black border-4 rounded-md font-bold px-4 py-3 cursor-pointer border-gray-50">
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="relative -top-0.5 inline-block inherit w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+               </svg>
+               About this Site
+            </span>
+         </a>
+      </div>
+      <div class = "z-10">
+         <div class = "grid grid-cols-12 py-12 pt-12 md:py-36 md:pt-56 block bg-black text-gray-50">
+            <div class = "col-centered uppercase md:px-0 px-4 col-span-12 text-6xl md:text-8xl font-extrabold text-center">
+               <div class = "text-center">
+                  <img class = "bg-gray-50 inline-block h-32 mb-4 p-2 rounded-full w-32" src = "img/finger.png" />
+               </div>
+               FUCK Nepal Politics
+               <div class = "px-2 md:px-2 md:px-2 md:px-8 max-w-7xl">
+                  <div class = "normal-case font-bold mt-4 text-xl">
+                     Nepal's politics is rife with corruption, exploitation, and betrayal. This website exposes the truth by naming politicians and detailing their crimes, empowering citizens to hold them accountable and fight back against a broken system. 
+                  </div>
+               </div>
+            </div>
+         </div>
+         <span id = "search" class = "relative -top-20"></span>
+         <div class = "w-full px-4 py-10 lg:px-20 lg:py-20">
+            <div class = "px-2 md:px-2 md:px-8 max-w-7xl" style = "margin-left: auto;margin-right: auto;">
+               <div class = "text-5xl md:text-7xl uppercase font-extrabold">SEARCH Politicians' Crimes</div>
+               <div class = "h-4 w-32 mt-2 mb-2 block bg-red-300"></div>
+               <div class = "text-xl md:text-2xl mt-8 mb-8 font-bold">
+                  Designed to help you identify politicians involved in corruption or crime, this tool makes it easier to hold them accountable. If you come across a politician not listed here, feel free to <a href = "https://docs.google.com/forms/d/1iaKSsBKOdOJUHSe3Gvsb6-bnjH3O4yhAnzC5kXq9zSA/edit" class = "text-green-500 hover:underline">inform us here</a>. 
+                  
+
+               </div>
+               <div class = "relative mt-4">
+                  <input id = "search-input" oninput="checkIfEmpty()" type = "text" placeholder = "Search for Politicians or Crimes..." class = "border-4 search-input text-xl w-full p-6 py-6 rounded-md text-black" />
+                  <div id = "cancel-search" class = "hidden">
+                    <div onclick = "cancelSearch()" class = "inline-block text-lg font-extrabold cursor-pointer mt-4 text-gray-500 duration-200 border-b-4 border-transparent hover:border-gray-500"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="relative -top-0.5 inline-block inherit w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                       Clear search</div>
+                </div>
+                    <div class = "hidden mt-6">
+                     <span onclick="setSearchInput('Drinks')" class = "inline-block mt-2 duration-200 hover:bg-gray-900 hover:text-gray-50 hover:border-gray-900 cursor-pointer no-select border-4 mr-2 px-4 py-2 rounded-2xl text-base md:text-xl font-bold">Drinks</span>
+                     <span onclick = "setSearchInput('Food')" class = "inline-block mt-2 duration-200 hover:bg-gray-900 hover:text-gray-50 hover:border-gray-900 cursor-pointer no-select border-4 mr-2 px-4 py-2 rounded-2xl text-base md:text-xl font-bold">Food</span>
+                     <span onclick = "setSearchInput('Food')" class = "inline-block mt-2 duration-200 hover:bg-gray-900 hover:text-gray-50 hover:border-gray-900 cursor-pointer no-select border-4 mr-2 px-4 py-2 rounded-2xl text-base md:text-xl font-bold">Seasonings</span>
+
+                  </div>
+               </div>
+
+               <div id = "search-option" class = "section hidden mt-12">
+                    <div class = "no-select text-2xl md:text-5xl text-inherit font-extrabold pb-2 border-b-4 border-gray-900 uppercase font-extrabold">Search Results</div>
+                    <div id = "search-results-spawn" class = "grid col-centered grid-cols-12">
+
+                    </div>
+               </div>
+
+               <div id = "default-option" class = "section mt-12">
+                  <div onclick = "toggleSection('bribery')" class = "mt-12 section-bribery w-full duration-200 cursor-pointer border-gray-900 border-b-4 p-3 rounded-none hover:text-gray-900 bg-transparent hover:bg-gray-200">
+                     <div class = "no-select text-2xl md:text-5xl text-inherit font-extrabold">
+                        CORRUPTION AND BRIBERY                        <svg id = "bribery-caret" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3.5" stroke="currentColor" class="duration-200 relative top-1 rotate-180 float-right w-10 h-10 inline-block">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                     </div>
+                  </div>
+                  <div id = "bribery-section" class = "w-full font-bold mt-8 text-xl">
+                     <div id = "bribery-spawn" class = "grid col-centered grid-cols-12"></div>
+                  </div>
+                  <div onclick = "toggleSection('rights')" class = "mt-12 section-rights w-full duration-200 cursor-pointer border-gray-900 border-b-4 p-3 rounded-none hover:text-gray-900 bg-transparent hover:bg-gray-200">
+                     <div class = "no-select text-2xl md:text-5xl text-inherit font-extrabold">
+                        HUMAN RIGHTS VIOLATIONS                        <svg id = "rights-caret" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3.5" stroke="currentColor" class="duration-200 relative top-1 rotate-180 float-right w-10 h-10 inline-block">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                     </div>
+                  </div>
+                  <div id = "rights-section" class = "w-full font-bold mt-8 text-xl">
+                     <div id = "rights-spawn" class = "grid col-centered grid-cols-12"></div>
+                  </div>
+                  <div onclick = "toggleSection('fraud')" class = "mt-12 section-fraud w-full duration-200 cursor-pointer border-gray-900 border-b-4 p-3 rounded-none hover:text-gray-900 bg-transparent hover:bg-gray-200">
+                     <div class = "no-select text-2xl md:text-5xl text-inherit font-extrabold">
+                        ELECTORAL FRAUD                        <svg id = "fraud-caret" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3.5" stroke="currentColor" class="duration-200 relative top-1 rotate-180 float-right w-10 h-10 inline-block">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                     </div>
+                  </div>
+                  <div id = "fraud-section" class = "w-full font-bold mt-8 text-xl">
+                     <div id = "fraud-spawn" class = "grid col-centered grid-cols-12"></div>
+                  </div>
+                  <div onclick = "toggleSection('embezzlement')" class = "mt-12 section-embezzlement w-full duration-200 cursor-pointer border-gray-900 border-b-4 p-3 rounded-none hover:text-gray-900 bg-transparent hover:bg-gray-200">
+                     <div class = "no-select text-2xl md:text-5xl text-inherit font-extrabold">
+                        EMBEZZLEMENT AND FRAUD                          <svg id = "embezzlement-caret" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3.5" stroke="currentColor" class="duration-200 relative top-1 rotate-180 float-right w-10 h-10 inline-block">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                     </div>
+                  </div>
+                  <div id = "embezzlement-section" class = "w-full font-bold mt-8 text-xl">
+                     <div id = "embezzlement-spawn" class = "grid col-centered grid-cols-12"></div>
+                  </div>
+                 
+                 <div onclick = "toggleSection('power')" class = "mt-12 section-power w-full duration-200 cursor-pointer border-gray-900 border-b-4 p-3 rounded-none hover:text-gray-900 bg-transparent hover:bg-gray-200">
+                     <div class = "no-select text-2xl md:text-5xl text-inherit font-extrabold">
+                        Abuse of Power
+                                                <svg id = "power-caret" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3.5" stroke="currentColor" class="duration-200 relative top-1 rotate-180 float-right w-10 h-10 inline-block">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                     </div>
+                  </div>
+                  <div id = "power-section" class = "w-full font-bold mt-8 text-xl">
+                     <div id = "power-spawn" class = "grid col-centered grid-cols-12"></div>
+                  </div>
+                   
+                  <div onclick = "toggleSection('shareholder')" class = "mt-12 section-shareholder w-full duration-200 cursor-pointer border-gray-900 border-b-4 p-3 rounded-none hover:text-gray-900 bg-transparent hover:bg-gray-200">
+                     <div class = "no-select text-2xl md:text-5xl text-inherit uppercase font-extrabold">
+                        Selling Out Sovereignty
+                        <svg id = "shareholder-caret" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3.5" stroke="currentColor" class="duration-200 relative top-1 rotate-180 float-right w-10 h-10 inline-block">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                     </div>
+                  </div>
+                  <div id = "shareholder-section" class = "w-full font-bold mt-8 text-xl">
+                     <div id = "shareholder-spawn" class = "grid md:gap-10 col-centered grid-cols-12">
+                        <div class = "col-span-12 p-4 rounded-md md:col-span-6 bg-gray-100">
+                           <div class = "text-3xl border-b-4 mb-4 pb-2 border-gray-900 uppercase font-bold">India Influence</div>
+                           Nepalese politicians have often been accused of prioritizing Indian interests, compromising Nepal’s sovereignty. For example, the Mahakali Treaty signed in 1996 involved sharing water resources from the Mahakali River between Nepal and India. Many critics argue that the treaty disproportionately benefits India, with Nepali politicians allegedly accepting personal gains in exchange for signing the deal. The border disputes in areas like Susta and Kalapani also fuel claims of politicians being too lenient with India, allowing territorial encroachments for personal or political benefits.
+                        </div>
+                        <div class = "col-span-12 p-4 font-bold rounded-md md:col-span-6 bg-gray-100">
+                           <div class = "text-3xl border-b-4 mb-4 pb-2 border-gray-900 uppercase font-bold">China Influence</div>
+                           China has also been accused of buying influence in Nepal, especially through investments in large infrastructure projects, such as those under the Belt and Road Initiative (BRI). Some politicians are accused of signing deals that favor Chinese companies, often at the expense of Nepal’s own long-term economic or environmental interests. Allegations of political leaders accepting bribes or kickbacks for approving Chinese-funded projects are rampant. There are also concerns that Nepal's neutrality is being compromised as politicians court Chinese influence to balance India's dominance.
+                        </div>
+                     </div>
+                  </div> 
+               </div>
+            </div>
+         </div>
+         <span id = "crimes" class = "relative -top-20"></span>
+         <div class = "w-full bg-black px-4 py-10 lg:px-20 lg:py-20">
+            <div class = "px-2 md:px-2 md:px-2 md:px-8 max-w-7xl" style = "margin-left: auto;margin-right: auto;">
+               <div class = "text-5xl md:text-7xl text-red-50 uppercase font-extrabold">Nepal’s Dirty Politics</div>
+               <div class = "h-4 w-32 mt-2 mb-2 block bg-red-300"></div>
+               <div class = "text-xl md:text-2xl mt-4 text-gray-50 font-bold">Nepal’s politicians have consistently prioritized their personal gain over the well-being of the nation — here are just a few examples</div>
+               <div class = "mt-10 grid gap-8 grid-cols-12">
+                  <a href = "https://kathmandupost.com/national/2022/01/06/baluwatar-land-scam-arrest-warrants-issued-against-300-individuals-for-document-forgery" target="_blank" class = "inline-block col-span-12 text-center md:col-span-6 xl:col-span-4">
+                     <div class = "top-0 cursor-pointer bg-gray-50 hover:-top-2 hover:shadow-xl relative shadow duration-200 rounded-b-xl rounded-t-xl text-center">
+                        <div class = "h-64 w-full bg-red-100 featured-image rounded-t-xl formula-image"></div>
+                        <div class = "font-extrabold p-8 text-left text-2xl">
+                           <div class = "font-extrabold inherit">Baluwatar Land Scam</div>
+                           <div class = "font-semibold text-lg">
+                              Arrest warrants issued Subedi, had allegedly played a vital role in registering the Lalita Niwas land in the name of a person in collusion with Shobha Kanta Dhakal.</div>
+                           <div class = "font-bold inline-block hover:underline text-blue-600 text-xl mt-4">
+                              Learn More
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline-block w-6 h-6">
+                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 15l3-3m0 0l-3-3m3 3h-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                           </div>
+                        </div>
+                     </div>
+                  </a>
+                  <a href = "https://kathmandupost.com/national/2024/07/01/20-more-arrested-in-gold-smuggling-case" target="_blank" class = "inline-block col-span-12 text-center md:col-span-6 xl:col-span-4">
+                     <div class = "top-0 cursor-pointer bg-gray-50 hover:-top-2 hover:shadow-xl relative shadow duration-200 rounded-b-xl rounded-t-xl text-center">
+                        <div class = "h-64 w-full bg-red-100 featured-image rounded-t-xl forced-labor-image"></div>
+                        <div class = "font-extrabold p-8 text-left text-2xl">
+                           <div class = "font-extrabold inherit">Gold Smuggling Cases</div>
+                           <div class = "font-semibold text-lg">
+                              The Central Investigation Bureau of Nepal Police has arrested 20 more individuals, including four Indians and two Chinese nationals, in connection with the 60-kg gold smuggling case.  
+                           </div>
+                           <div class = "font-bold inline-block hover:underline text-blue-600 text-xl mt-4">
+                              Learn More
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline-block w-6 h-6">
+                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 15l3-3m0 0l-3-3m3 3h-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                           </div>
+                        </div>
+                     </div>
+                  </a>
+                  <a href = "https://kathmandupost.com/money/2019/12/26/what-ncell-tax-dispute-is-all-about" target="_blank" class = "inline-block col-span-12 text-center md:col-span-6 xl:col-span-4">
+                     <div class = "top-0 cursor-pointer bg-gray-50 hover:-top-2 hover:shadow-xl relative shadow duration-200 rounded-b-xl rounded-t-xl text-center">
+                        <div class = "h-64 w-full bg-red-100 featured-image rounded-t-xl child-labor-image"></div>
+                        <div class = "font-extrabold p-8 text-left text-2xl">
+                           <div class = "font-extrabold inherit">Ncell Tax Scandal</div>
+                           <div class = "font-semibold text-lg">
+                              Confusions arose early on whether to tax the mega buyout deal. Campaigners later pressured government authorities and the court to recover the tax dues.
+                           </div>
+                           <div class = "font-bold inline-block hover:underline text-blue-600 text-xl mt-4">
+                              Learn More
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline-block w-6 h-6">
+                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 15l3-3m0 0l-3-3m3 3h-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                           </div>
+                        </div>
+                     </div>
+                  </a>
+                  <a href = "https://www.recordnepal.com/the-omni-scandal-and-its-impacts" target="_blank" class = "inline-block col-span-12 text-center md:col-span-6 xl:col-span-4">
+                     <div class = "top-0 cursor-pointer bg-gray-50 hover:-top-2 hover:shadow-xl relative shadow duration-200 rounded-b-xl rounded-t-xl text-center">
+                        <div class = "h-64 w-full bg-red-100 featured-image rounded-t-xl plastic-pollution-image"></div>
+                        <div class = "font-extrabold p-8 text-left text-2xl">
+                           <div class = "font-extrabold inherit">OMNI Covid-19 Procurement Scandal</div>
+                           <div class = "font-semibold text-lg">
+                              The Oli government’s corrupt involvements in the procurement deals for lifesaving PPEs and test kits
+                           </div>
+                           <div class = "font-bold inline-block hover:underline text-blue-600 text-xl mt-4">
+                              Learn More
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline-block w-6 h-6">
+                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 15l3-3m0 0l-3-3m3 3h-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                           </div>
+                        </div>
+                     </div>
+                  </a>
+                  <a href = "https://en.wikipedia.org/wiki/Bhutanese_refugees_scam" target="_blank" class = "inline-block col-span-12 text-center md:col-span-6 xl:col-span-4">
+                     <div class = "top-0 cursor-pointer bg-gray-50 hover:-top-2 hover:shadow-xl relative shadow duration-200 rounded-b-xl rounded-t-xl text-center">
+                        <div class = "h-64 w-full bg-red-100 featured-image rounded-t-xl drought-image"></div>
+                        <div class = "font-extrabold p-8 text-left text-2xl">
+                           <div class = "font-extrabold inherit">Bhutanese Refugee Scandal</div>
+                           <div class = "font-semibold text-lg">
+                              The corruption in Nepal's political structures has come to light as a result of the scam involving Bhutanese refugees.
+                           </div>
+                           <div class = "font-bold inline-block hover:underline text-blue-600 text-xl mt-4">
+                              Learn More
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline-block w-6 h-6">
+                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 15l3-3m0 0l-3-3m3 3h-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                           </div>
+                        </div>
+                     </div>
+                  </a>
+                  <a href = "https://kathmandupost.com/national/2024/09/19/government-decides-to-implement-house-report-on-cooperatives-fraud" target="_blank" class = "inline-block col-span-12 text-center md:col-span-6 xl:col-span-4">
+                     <div class = "top-0 cursor-pointer bg-gray-50 hover:-top-2 hover:shadow-xl relative shadow duration-200 rounded-b-xl rounded-t-xl text-center">
+                        <div class = "h-64 w-full bg-red-100 featured-image rounded-t-xl money-image"></div>
+                        <div class = "font-extrabold p-8 text-left text-2xl">
+                           <div class = "font-extrabold inherit">Cooperatives fraud probe committee</div>
+                           <div class = "font-semibold text-lg">
+                              The parliamentary special committee to investigate the misuse of public funds by various cooperatives approved..
+                           </div>
+                           <div class = "font-bold inline-block hover:underline text-blue-600 text-xl mt-4">
+                              Learn More
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline-block w-6 h-6">
+                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 15l3-3m0 0l-3-3m3 3h-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                           </div>
+                        </div>
+                     </div>
+                  </a>
+               </div>
+            </div>
+         </div>
+         <span id = "about" class = "relative -top-20"></span>
+         <div class = "w-full px-4 py-10 lg:px-20 lg:py-20">
+            <div class = "px-2 md:px-2 md:px-2 md:px-8 max-w-7xl" style = "margin-left: auto;margin-right: auto;">
+               <div class = "text-5xl md:text-7xl font-extrabold">ABOUT THIS SITE</div>
+               <div class = "h-4 w-32 mt-2 mb-2 block bg-red-300"></div>
+               <div class = "text-xl md:text-2xl mt-4 font-bold">
+                  Nepal's political system violates the core values that many of us uphold. But politicians, like major corporations, operate under a veil of secrecy, making it difficult for even the most informed citizens to keep track of their misdeeds. This allows them to manipulate the public and remain in power, despite their actions. 
+                  <br /> <br />
+                  The goal of this project is to 'lift the curtain' and provide the transparency the people of Nepal deserve. This website is a free, accessible resource that exposes politicians and their crimes so that citizens can make informed decisions. While this issue extends beyond individual politicians, many stand as prominent contributors to the decay of Nepal’s political landscape.
+                  <br /><br />
+                  For the sake of openness, this project is fully transparent and open-source, allowing anyone to view (and contribute to) <a href = "" target="_blank" class = "text-green-500 hover:underline">here</a>. 
+                  'd also like to give credit to the innovative projects that inspired this effort, including <a target = "_blank" href = "https://charlesstover.github.io/peoplecott/" class = "text-green-500 hover:underline">Peoplecott</a> by Charles Stover & the <a target = "_blank" href = "https://cokeboycott.com/" class = "text-green-500 hover:underline">Boycott Coco-Cola</a> campaign.
+                  <br /><br />
+                  Stay up-to-date and let’s unite to expose and hold corrupt politicians responsible!                  <br /><br />
+                  <i>
+                  Made with <span class = "text-red-500">&#10084;</span> by <a href = "https://www.sarojpokhrel.com.np/" class = "text-green-500 hover:underline" target = "_blank">Saroj Pokhrel</a>
+                  </i>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script src="js/jquery-3.6.0.min.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.0/gsap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.0/ScrollToPlugin.min.js"></script>
+      <script src = "js/action.js"></script>
+   </body>
+</html>
